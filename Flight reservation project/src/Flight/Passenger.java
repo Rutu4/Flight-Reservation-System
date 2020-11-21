@@ -1,6 +1,12 @@
 package Flight;
 
 public class Passenger {
+    private  static int idCounter;
+    private int id;
+
+    static{
+        idCounter=0;
+    }
 
 
     private static class Address {
@@ -29,9 +35,14 @@ public class Passenger {
     public Passenger(String addressStreet, String addressCity,
                            String addressState, String contactName, String contactPhone,
                            String contactEmail) {
+        this.id=++idCounter;
         this.address = new Address(addressStreet, addressCity, addressState);
         this.contact = new Contact(contactName, contactPhone, contactEmail);
     }
+
+     public int getId(){
+        return this.id;
+     }
 
     public String getAddressDetails() {
         return address.street + ", " + address.city + ", " + address.state;
