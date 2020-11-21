@@ -1,3 +1,4 @@
+
 package Flight;
 
 public abstract class Ticket {
@@ -8,10 +9,11 @@ public abstract class Ticket {
     public boolean isTicketConfirmed;
     public Flight flight;
     public Passenger  passenger;
-    private  int seatNumber=0;
+    public  int seatNumber=0;
 
-    public Ticket(int PNRNumber, String destinationLocation, String departureLocation, float ticketPrize, Flight flight, Passenger passenger){
+    public Ticket( String destinationLocation, String departureLocation, float ticketPrize, Flight flight, Passenger passenger){
         this.PNRNumber=PNRNumber++;
+        this.seatNumber=++seatNumber
         this.departureLocation=departureLocation;
         this.destinationLocation=destinationLocation;
         this.ticketPrize=ticketPrize;
@@ -21,22 +23,8 @@ public abstract class Ticket {
     }
 
 
-    public String bookTicket(){
-        this.seatNumber=++this.seatNumber;
-        if(this.seatNumber>this.flight.getCapacity()){
-            isTicketConfirmed=false;
+    public  abstract bookTicket(){
 
-            return "Can't book Seat.";
-        }
-        else{
-            isTicketConfirmed=true;
-            this.flight.setNumOfSeatsBooked();
-            System.out.println(this.passenger.getContactDetails());
-            System.out.println(this.passenger.getAddressDetails());
-            System.out.println(this.flight.getFlightDetails());
-            System.out.println(this.ticketDetails());
-            return "Ticket Booked";
-        }
     }
 
     public String ticketDetails(){
