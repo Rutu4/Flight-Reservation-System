@@ -51,6 +51,9 @@ public class Passenger {
     public String getContactDetails() {
         return contact.name + ", " + contact.phone + ", " + contact.email;
     }
+    public int getPassangerCount(){
+        return idCounter;
+    }
 }
 
 
