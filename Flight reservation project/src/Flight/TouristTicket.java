@@ -23,7 +23,7 @@ public class TouristTicket extends Ticket{
     }
 
     public String statusOfTicket(){
-
+             this.seatNumber=++(this.seatNumber);
         if(this.seatNumber>this.flight.getCapacity()){
             this.isTicketConfirmed=false;
 
@@ -36,7 +36,7 @@ public class TouristTicket extends Ticket{
             System.out.println(this.passenger.getAddressDetails());
             System.out.println(this.flight.getFlightDetails());
             System.out.println(this.ticketDetails());
-            return "Confirm";
+            return "PNR Number: "+ PNRNumber;
         }
     }
 
@@ -48,7 +48,7 @@ public class TouristTicket extends Ticket{
 
 
     public String ticketDetails(){
-        return "Ticket type: Regular Ticket"+ ", Seat Number: "+this.seatNumber;
+        return "Ticket type: Tourist Ticket"+ ", Seat Number: "+this.seatNumber;
     }
 
 

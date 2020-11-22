@@ -18,9 +18,10 @@ public class RegularTicket extends Ticket {
 
 
 
+
     }
     public String statusOfTicket(){
-
+            this.seatNumber=++(this.seatNumber);
         if(this.seatNumber>this.flight.getCapacity()){
             this.isTicketConfirmed=false;
 
@@ -33,7 +34,7 @@ public class RegularTicket extends Ticket {
             System.out.println(this.passenger.getAddressDetails());
             System.out.println(this.flight.getFlightDetails());
             System.out.println(this.ticketDetails());
-            return "Confirmed";
+            return "PNR Number: "+PNRNumber;
         }
     }
 

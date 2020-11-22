@@ -4,7 +4,8 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 public abstract class Ticket {
-    private    int PNRNumber=101;
+    public static int idCounterForPNR;
+    public    int PNRNumber=101;
     private String  departureLocation;
     private String  destinationLocation;
     private float ticketPrize;
@@ -15,12 +16,15 @@ public abstract class Ticket {
     private String dateAndTimeOfDeparture;
     private String getDateAndTimeOfDestination;
     private long duration;
+    static{
+        idCounterForPNR=1232;
+
+    }
 
 
     public Ticket( String destinationLocation, String departureLocation,String dateAndTimeOfDeparture,
                    String getDateAndTimeOfDestination, float ticketPrize, Flight flight, Passenger passenger){
-        this.PNRNumber=PNRNumber++;
-        this.seatNumber=++seatNumber;
+        this.PNRNumber=++idCounterForPNR;
         this.departureLocation=departureLocation;
         this.destinationLocation=destinationLocation;
         this.ticketPrize=ticketPrize;
