@@ -1,55 +1,41 @@
 package Flight;
 
 public class Flight {
-    private static int idCounter;
     private int flightNumber;
     private String airlineOfFlight;
     private int capacity;
-    private int numOfSeatsBooked;
-    private String dateOfDeparture;
-    private String dateOfDestination;
-    private String timeOfDeparture;
-    private String timeOfDestination;
-
-    static{
-        idCounter=0;
-    }
+    public int seatsBooked=0;
 
 
-    public Flight( int flightNumber,String airlineOfFlight, int capacity, String dateOfDeparture,
-                  String dateOfDestination,String timeOfDeparture, String timeOfDestination){
+
+
+    public Flight( int flightNumber,String airlineOfFlight, int capacity){
         this.flightNumber=flightNumber;
         this.airlineOfFlight=airlineOfFlight;
         this.capacity=capacity;
-        this.dateOfDeparture=dateOfDeparture;
-        this.dateOfDestination=dateOfDestination;
-        this.timeOfDeparture=timeOfDeparture;
-        this.timeOfDestination=timeOfDestination;
+        this.seatsBooked=seatsBooked;
     }
-     public Flight (){
-                  this(0,"",0,"00/00/0000",
-                          "00/00/00/0000","00:00","00:00");
-     }
+
 
     public Flight (Flight flight){
         this.flightNumber=flight.flightNumber;
         this.airlineOfFlight=flight.airlineOfFlight;
         this.capacity=flight.capacity;
-        this.numOfSeatsBooked=flight.numOfSeatsBooked;
+        this.seatsBooked=flight.seatsBooked;
     }
 
     public String getFlightDetails(){
         return "Flight number: "+ flightNumber +", Airline of flight: "+airlineOfFlight+
-                ", Capacity: " +capacity+", Number of Seats Booked: 1";
+                ", Capacity: " +capacity;
 
     }
     public boolean checkAvailabilityOfSeats(){
-        if(numOfSeatsBooked<capacity)
+        if(seatsBooked<capacity)
             return true;
         else
             return false;
     }
-    public void updateNumOfSeatsBooked(){
+    public void updateSeatsBooked(){
 
     }
     public int getFlightNumber(){
@@ -58,25 +44,11 @@ public class Flight {
     public String getAirlineOfFlight(){
         return airlineOfFlight;
     }
-    public String getDateOfDeparture(){
-        return dateOfDeparture;
-    }
-    public String getDateOfDestination(){
-        return dateOfDestination;
-    }
-    public String getTimeOfDeparture(){
-        return  timeOfDeparture;
-    }
-    public String getTimeOfDestination(){
-        return timeOfDestination;
-    }
     public int getCapacity(){
         return capacity;
     }
-   public int getNumOfSeatsBooked(){
-        return numOfSeatsBooked;
+   public int getSeatsBooked(){
+        return seatsBooked;
    }
-   public void setNumOfSeatsBooked(){
 
-   }
 }

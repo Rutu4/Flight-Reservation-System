@@ -1,56 +1,60 @@
 
 package Flight;
-
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 public abstract class Ticket {
     private    int PNRNumber=101;
     private String  departureLocation;
     private String  destinationLocation;
     private float ticketPrize;
-    public boolean isTicketConfirmed;
+    public boolean isTicketConfirmed=false;
     public Flight flight;
     public Passenger  passenger;
     public  int seatNumber=0;
+    private String dateAndTimeOfDeparture;
+    private String getDateAndTimeOfDestination;
+    private long duration;
 
-    public Ticket( String destinationLocation, String departureLocation, float ticketPrize, Flight flight, Passenger passenger){
+
+    public Ticket( String destinationLocation, String departureLocation,String dateAndTimeOfDeparture,
+                   String getDateAndTimeOfDestination, float ticketPrize, Flight flight, Passenger passenger){
         this.PNRNumber=PNRNumber++;
-        this.seatNumber=++seatNumber
+        this.seatNumber=++seatNumber;
         this.departureLocation=departureLocation;
         this.destinationLocation=destinationLocation;
         this.ticketPrize=ticketPrize;
         this.flight=flight;
         this.passenger=passenger;
-        this.isTicketConfirmed=isTicketConfirmed();
-    }
-
-
-    public  abstract bookTicket(){
-
-    }
-
-    public String ticketDetails(){
-        return "Ticket type: Regular Ticket"+ ", Seat Number: "+this.seatNumber+ ", Status of Ticket:" +this.StatusOfTicket(this.isTicketConfirmed);
-    }
-
-    public String StatusOfTicket(boolean isTicketConfirmed){
-        if (isTicketConfirmed)
-            return "Confirmed";
-        else
-            return "Cancelled";
-    }
-    /*public String durationOfJourney(){
-
-    }*/
-
-    public void cancelTicket(){
-        isTicketConfirmed=false;
+        this.dateAndTimeOfDeparture=dateAndTimeOfDeparture;
+        this.getDateAndTimeOfDestination=getDateAndTimeOfDestination;
 
     }
 
 
 
-    public String getDepartureLocation() {
-        return departureLocation;
+
+    abstract String ticketDetails();
+
+    abstract String statusOfTicket();
+
+    public long durationOfJourney(){
+        SimpleDateFormat sdf=new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+       try {
+           Date d1 = sdf.parse(dateAndTimeOfDeparture);
+           Date d2 = sdf.parse(getDateAndTimeOfDestination);
+           duration = d2.getTime() - d1.getTime();
+       }
+       catch (ParseException e){
+           System.out.println("cant find Duration");
+       }
+       return duration;
     }
+
+   abstract  String cancelTicket();
+
+
+
 
     public int getPNRNumber() {
         return PNRNumber;
@@ -64,6 +68,17 @@ public abstract class Ticket {
         return ticketPrize;
     }
 
+    public String getDepartureLocation(){
+        return departureLocation;
+    }
 
-
+    public String getDestinationLocation() {
+        return destinationLocation;
+    }
+    public String getDateAndTimeOfDeparture(){
+        return dateAndTimeOfDeparture;
+    }
+    public String getGetDateAndTimeOfDestination(){
+        return getDateAndTimeOfDestination;
+    }
 }

@@ -7,10 +7,11 @@ public class TouristTicket extends Ticket{
 
 
 
-    public TouristTicket( String departureLocation, String destinationLocation,
-                         float prizeOfTicket, String touristHotelAddress,String touristLocations[],
+    public TouristTicket( String departureLocation, String destinationLocation,String dateAndTimeOfDestination,String dateAndTimeOfDeparture,
+                         float ticketPrize, String touristHotelAddress,String touristLocations[],
                          Flight flight, Passenger passenger){
-        super(destinationLocation,departureLocation,prizeOfTicket,flight,passenger);
+        super(destinationLocation,departureLocation,dateAndTimeOfDeparture, dateAndTimeOfDestination,ticketPrize,flight,passenger);
+
 
 
         this.touristHotelAddress=touristHotelAddress;
@@ -21,14 +22,36 @@ public class TouristTicket extends Ticket{
 
     }
 
+    public String statusOfTicket(){
+
+        if(this.seatNumber>this.flight.getCapacity()){
+            this.isTicketConfirmed=false;
+
+            return "Can't book Seat.";
+        }
+        else{
+            this.isTicketConfirmed=true;
+            this.flight.seatsBooked++;
+            System.out.println(this.passenger.getContactDetails());
+            System.out.println(this.passenger.getAddressDetails());
+            System.out.println(this.flight.getFlightDetails());
+            System.out.println(this.ticketDetails());
+            return "Confirm";
+        }
+    }
+
+    public String cancelTicket(){
+        isTicketConfirmed=false;
+        this.flight.seatsBooked--;
+        return "Cancelled";
+    }
 
 
+    public String ticketDetails(){
+        return "Ticket type: Regular Ticket"+ ", Seat Number: "+this.seatNumber;
+    }
 
 
-
-    /*public String durationOfJourney(){
-
-    }*/
 
 
     public void addTouristLocation(String location){
@@ -60,8 +83,12 @@ public class TouristTicket extends Ticket{
 
 
 
-    public String[] getTouristLocations() {
-        return touristLocations;
+    public String getTouristLocations() {
+        String locations="";
+        for(int i=0;i<5;i++){
+            locations=locations+ touristLocations[i];
+        }
+        return locations;
     }
 
 }

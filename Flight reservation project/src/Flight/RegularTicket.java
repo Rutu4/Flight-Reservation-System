@@ -7,10 +7,11 @@ public class RegularTicket extends Ticket {
     private boolean snacks;
 
 
-    public RegularTicket(String departureLocation, String destinationLocation, float prizeOfTicket,
+    public RegularTicket(String departureLocation, String destinationLocation,String dateAndTimeOfDeparture,
+                         String dateAndTimeOfDestination, float ticketPrize,
                          boolean food, boolean water, boolean snacks,
                          Flight flight, Passenger  passenger){
-        super(destinationLocation,departureLocation,prizeOfTicket,flight,passenger);
+        super(destinationLocation,departureLocation, dateAndTimeOfDeparture, dateAndTimeOfDestination ,ticketPrize,flight,passenger);
         this.water=water;
         this.food=food;
         this.snacks=snacks;
@@ -18,7 +19,7 @@ public class RegularTicket extends Ticket {
 
 
     }
-    public String bookTicket(){
+    public String statusOfTicket(){
 
         if(this.seatNumber>this.flight.getCapacity()){
             this.isTicketConfirmed=false;
@@ -27,25 +28,26 @@ public class RegularTicket extends Ticket {
         }
         else{
             this.isTicketConfirmed=true;
-            this.flight.setNumOfSeatsBooked();
+            this.flight.seatsBooked++;
             System.out.println(this.passenger.getContactDetails());
             System.out.println(this.passenger.getAddressDetails());
             System.out.println(this.flight.getFlightDetails());
             System.out.println(this.ticketDetails());
-            return "Ticket Booked";
+            return "Confirmed";
         }
     }
 
-    public String ticketDetails(){
-        return "Ticket type: Regular Ticket"+ ", Seat Number: "+this.seatNumber+ ", Status of Ticket:" +this.StatusOfTicket(this.isTicketConfirmed);
+    public String cancelTicket(){
+        isTicketConfirmed=false;
+        this.flight.seatsBooked--;
+        return "Cancelled";
     }
 
-    public String StatusOfTicket(){
-        if (this.isTicketConfirmed)
-            return "Confirmed";
-        else
-            return "Cancelled";
+    public String ticketDetails(){
+        return "Ticket type: Regular Ticket"+ ", Seat Number: "+this.seatNumber+ ", Status of Ticket:" +(isTicketConfirmed?"Confirmed":"Cancelled");
     }
+
+
 
 
 
