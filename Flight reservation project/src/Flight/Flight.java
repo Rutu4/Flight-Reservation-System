@@ -3,10 +3,14 @@ package Flight;
 public class Flight {
 
     //attributes of Flight class
+    private static int idCounter;
     private int flightNumber;
     private String airlineOfFlight;
     private int capacity;
-    public int seatsBooked=0;
+    public int seatsBooked;
+    private int seatNumber=0;
+
+
 
 
 
@@ -16,6 +20,7 @@ public class Flight {
         this.airlineOfFlight=airlineOfFlight;
         this.capacity=capacity;
         this.seatsBooked=seatsBooked;
+        this.seatNumber=(getSeatNumber())+1;
     }
 
     //constructor to shallow copy the object of Flight class
@@ -43,7 +48,7 @@ public class Flight {
 
     //method to update seats booked
     public void updateSeatsBooked(){
-            this.seatsBooked=seatsBooked;
+            seatsBooked=this.capacity-this.seatNumber;
     }
 
     //getter's for flight number, airline , capacity and seats booked
@@ -59,5 +64,16 @@ public class Flight {
    public int getSeatsBooked(){
         return seatsBooked;
    }
+   public void setSeatsBooked(int number){
+        seatsBooked=number;
+   }
+
+   public int getSeatNumber(){
+        return seatNumber;
+   }
+   public void setSeatNumber(int number){
+        seatNumber=number;
+   }
+
 
 }

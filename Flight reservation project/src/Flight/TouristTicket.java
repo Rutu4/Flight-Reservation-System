@@ -12,7 +12,7 @@ public class TouristTicket extends Ticket{
                          float ticketPrize, String touristHotelAddress,String touristLocations[],
                          Flight flight, Passenger passenger){
 
-        // calling parent consructor
+        // calling parent constructor
         super(destinationLocation,departureLocation,dateAndTimeOfDeparture, dateAndTimeOfDestination,ticketPrize,flight,passenger);
 
 
@@ -27,15 +27,14 @@ public class TouristTicket extends Ticket{
 
     //method to book and print PNR number
     public String statusOfTicket(){
-             this.seatNumber=++(this.seatNumber);
-        if(this.seatNumber>this.flight.getCapacity()){
+        if(this.flight.getSeatNumber()>this.flight.getCapacity()){
             this.isTicketConfirmed=false;
 
             return "Can't book Seat.";
         }
         else{
             this.isTicketConfirmed=true;
-            this.flight.seatsBooked++;
+            this.flight.updateSeatsBooked();
             System.out.println(this.passenger.getContactDetails());
             System.out.println(this.passenger.getAddressDetails());
             System.out.println(this.flight.getFlightDetails());
@@ -47,13 +46,13 @@ public class TouristTicket extends Ticket{
     //method to cancel ticket
     public String cancelTicket(){
         isTicketConfirmed=false;
-        this.flight.seatsBooked--;
+        this.flight.setSeatNumber((this.flight.getSeatNumber())-1);
         return "Cancelled";
     }
 
     //method to return ticket details
     public String ticketDetails(){
-        return "Ticket type: Tourist Ticket"+ ", Seat Number: "+this.seatNumber;
+        return "Ticket type: Tourist Ticket"+ ", Seat Number: "+this.flight.getSeatNumber();
     }
 
 

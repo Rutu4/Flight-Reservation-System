@@ -25,15 +25,14 @@ public class RegularTicket extends Ticket {
 
     // method statusOfTicket to book ticket and return PNR NUmber
     public String statusOfTicket(){
-            this.seatNumber=++(this.seatNumber);
-        if(this.seatNumber>this.flight.getCapacity()){
+        if(this.flight.getSeatNumber()>this.flight.getCapacity()){
             this.isTicketConfirmed=false;
 
             return "Can't book Seat.";
         }
         else{
             this.isTicketConfirmed=true;
-            this.flight.seatsBooked++;
+            this.flight.updateSeatsBooked();
             System.out.println(this.passenger.getContactDetails());
             System.out.println(this.passenger.getAddressDetails());
             System.out.println(this.flight.getFlightDetails());
@@ -45,13 +44,13 @@ public class RegularTicket extends Ticket {
     //method to cancel Ticket
     public String cancelTicket(){
         isTicketConfirmed=false;
-        this.flight.seatsBooked--;
+        this.flight.setSeatNumber((this.flight.getSeatNumber())-1);
         return "Cancelled";
     }
 
     // method to return ticket details
     public String ticketDetails(){
-        return "Ticket type: Regular Ticket"+ ", Seat Number: "+this.seatNumber+ ", Status of Ticket:" +(isTicketConfirmed?"Confirmed":"Cancelled");
+        return "Ticket type: Regular Ticket"+ ", Seat Number: "+this.flight.getSeatNumber()+ ", Status of Ticket:" +(isTicketConfirmed?"Confirmed":"Cancelled");
     }
 
 
