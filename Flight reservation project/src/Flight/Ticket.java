@@ -1,9 +1,15 @@
 
 package Flight;
+
+//importing necessary modules
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+
+//creating abstarct Ticket class
 public abstract class Ticket {
+
+    //attributes of Ticket class
     public static int idCounterForPNR;
     public    int PNRNumber=101;
     private String  departureLocation;
@@ -16,12 +22,14 @@ public abstract class Ticket {
     private String dateAndTimeOfDeparture;
     private String getDateAndTimeOfDestination;
     private long duration;
+
+    //initialising static variable
     static{
         idCounterForPNR=1232;
 
     }
 
-
+    //constructor of Ticket class
     public Ticket( String destinationLocation, String departureLocation,String dateAndTimeOfDeparture,
                    String getDateAndTimeOfDestination, float ticketPrize, Flight flight, Passenger passenger){
         this.PNRNumber=++idCounterForPNR;
@@ -37,11 +45,15 @@ public abstract class Ticket {
 
 
 
-
+    //abstarct methods
     abstract String ticketDetails();
 
     abstract String statusOfTicket();
 
+    abstract  String cancelTicket();
+
+
+    //method to find duration of Journey
     public long durationOfJourney(){
         SimpleDateFormat sdf=new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
        try {
@@ -55,11 +67,8 @@ public abstract class Ticket {
        return duration;
     }
 
-   abstract  String cancelTicket();
 
-
-
-
+    // getter and setter methods for private atributes
     public int getPNRNumber() {
         return PNRNumber;
     }

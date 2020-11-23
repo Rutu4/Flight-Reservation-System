@@ -2,14 +2,17 @@ package Flight;
 
 public class TouristTicket extends Ticket{
 
+    //Attributes of TouristTicket
     private String touristHotelAddress;
     private String[] touristLocations= new String[4];
 
 
-
+    // constructor for TouristTicket class
     public TouristTicket( String departureLocation, String destinationLocation,String dateAndTimeOfDestination,String dateAndTimeOfDeparture,
                          float ticketPrize, String touristHotelAddress,String touristLocations[],
                          Flight flight, Passenger passenger){
+
+        // calling parent consructor
         super(destinationLocation,departureLocation,dateAndTimeOfDeparture, dateAndTimeOfDestination,ticketPrize,flight,passenger);
 
 
@@ -22,6 +25,7 @@ public class TouristTicket extends Ticket{
 
     }
 
+    //method to book and print PNR number
     public String statusOfTicket(){
              this.seatNumber=++(this.seatNumber);
         if(this.seatNumber>this.flight.getCapacity()){
@@ -40,20 +44,21 @@ public class TouristTicket extends Ticket{
         }
     }
 
+    //method to cancel ticket
     public String cancelTicket(){
         isTicketConfirmed=false;
         this.flight.seatsBooked--;
         return "Cancelled";
     }
 
-
+    //method to return ticket details
     public String ticketDetails(){
         return "Ticket type: Tourist Ticket"+ ", Seat Number: "+this.seatNumber;
     }
 
 
 
-
+    //method to add tourist location
     public void addTouristLocation(String location){
         for(int i=0;i<5;i++){
             if(touristLocations[i]==null){
@@ -67,6 +72,7 @@ public class TouristTicket extends Ticket{
         }
     }
 
+    //method to remove tourist location
     public void removeLocation(String location){
         for(int i=0;i<5;i++){
             if(touristLocations[i].equals(location)){
@@ -76,13 +82,13 @@ public class TouristTicket extends Ticket{
         }
     }
 
-
+    // method to get Tourist hotel address
     public String getTouristHotelAddress() {
         return touristHotelAddress;
     }
 
 
-
+    //method to get tourist locations
     public String getTouristLocations() {
         String locations="";
         for(int i=0;i<5;i++){

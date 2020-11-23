@@ -1,6 +1,8 @@
 package Flight;
 
 public class Flight {
+
+    //attributes of Flight class
     private int flightNumber;
     private String airlineOfFlight;
     private int capacity;
@@ -8,7 +10,7 @@ public class Flight {
 
 
 
-
+    // constructor of Flight class
     public Flight( int flightNumber,String airlineOfFlight, int capacity){
         this.flightNumber=flightNumber;
         this.airlineOfFlight=airlineOfFlight;
@@ -16,7 +18,7 @@ public class Flight {
         this.seatsBooked=seatsBooked;
     }
 
-
+    //constructor to shallow copy the object of Flight class
     public Flight (Flight flight){
         this.flightNumber=flight.flightNumber;
         this.airlineOfFlight=flight.airlineOfFlight;
@@ -24,20 +26,27 @@ public class Flight {
         this.seatsBooked=flight.seatsBooked;
     }
 
+    //method for flight details
     public String getFlightDetails(){
         return "Flight number: "+ flightNumber +", Airline of flight: "+airlineOfFlight+
                 ", Capacity: " +capacity;
 
     }
+
+    //method to check availability of seat
     public boolean checkAvailabilityOfSeats(){
         if(seatsBooked<capacity)
             return true;
         else
             return false;
     }
-    public void updateSeatsBooked(){
 
+    //method to update seats booked
+    public void updateSeatsBooked(){
+            this.seatsBooked=seatsBooked;
     }
+
+    //getter's for flight number, airline , capacity and seats booked
     public int getFlightNumber(){
         return flightNumber;
     }
